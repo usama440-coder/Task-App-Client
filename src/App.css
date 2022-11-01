@@ -1,38 +1,228 @@
-.App {
-  text-align: center;
+.navContainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 50px;
+    background-color: #2E0249;
+    color: white;
+    align-items: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navLinks {
+    display: flex;
+    gap: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navLink {
+    text-decoration: none;
+    color: white;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.navLink:hover {
+    opacity: 0.7;
 }
 
-.App-link {
-  color: #61dafb;
+.taskListContainer {
+    padding: 20px 50px;
+    width: 100%;
+    max-width: 1024px;
+    margin: auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.searchBar {
+    margin-top: 20px;
+    margin: auto;
+    display: flex;
+}
+
+.searchInput {
+    padding: 10px;
+    outline: none;
+    width: 100%;
+    border: 2px solid #ddb9d1;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    font-size: 15px;
+}
+
+.searchBtn {
+    padding: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    outline: none;
+    border: none;
+    background: #A91079;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.searchBtn:hover {
+    opacity: 0.7;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #570A57;
+    color: white;
+    font-size: 20px;
+    font-weight: lighter;
+}
+
+td,th {
+    padding: 10px;
+}
+
+tr:nth-child(2n) {
+    background-color: #ddcbd7;
+}
+
+.eyeIcon {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.eyeIcon:hover {
+    color: #570A57;
+}
+
+.addTaskContainer {
+    padding: 20px 50px;
+    width: 100%;
+    max-width: 1024px;
+    margin: auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+form > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.addTaskInput {
+    padding: 10px;
+    font-size: 15px;
+    outline: none;
+    border:none;
+    border: 2px solid #ddb9d1;
+    border-radius: 10px;
+}
+
+textarea {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    resize: none;
+}
+
+.radioItems div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.submitBtn {
+    padding: 10px;
+    font-size: 15px;
+    outline: none;
+    border:none;
+    background: #A91079;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.submitBtn:hover {
+    opacity: .7;
+}
+
+.taskContainer {
+    padding: 20px 50px;
+    width: 100%;
+    max-width: 1024px;
+    margin: auto;
+}
+
+.taskContainer div b {
+    padding: 10px 0px;
+}
+
+.taskTitleContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.taskContainer p {
+    text-align: justify;
+}
+
+.editTaskBtn {
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 15px;
+    background: transparent;
+    margin-right: 20px;
+    width: 100px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 2px solid #A91079;
+}
+
+.del {
+    background-color: #EC4134;
+    color: white;
+    border: 2px solid #EC4134;
+}
+
+.modal {
+    position: absolute;
+    width: 300px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 500px;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+    background: rgb(244, 244, 244);
+    border-radius: 10px;
+    transition: all 0.5s ease-in-out;
+}
+
+
+.modalBtn {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    font-size: 15px;
+    padding: 10px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.close {
+    background-color: white;
+}
+
+.delete {
+    background-color: #EC4134;
+    color: white;
 }
