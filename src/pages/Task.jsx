@@ -1,8 +1,38 @@
 import "../App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getTask } from "../slices/task.slice";
+import { deleteTask } from "../slices/task.slice";
+import toast from "react-hot-toast";
 
 const Task = () => {
   const [openModal, setOpenModal] = useState(false);
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const { loading, task, error } = useSelector((state) => state.task);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(getTask(id));
+  }, [dispatch, id]);
+
+  const handleDelete = (e) => {
+    dispatch(deleteTask(id))
+      .unwrap()
+      .then((data) => {
+        toast.success("Task Deleted Successfully");
+        navigate("/");
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+    setOpenModal(false);
+  };
+
+  const handleEdit = (e) => {
+    navigate(`/edit/${id}`);
+  };
 
   return (
     <div className="taskContainer">
@@ -16,38 +46,46 @@ const Task = () => {
             >
               Close
             </button>
-            <button className="modalBtn delete">Delete</button>
+            <button className="modalBtn delete" onClick={() => handleDelete()}>
+              Delete
+            </button>
           </div>
         </div>
       ) : (
         ""
       )}
 
-      <div className="taskTitleContainer">
-        <h2>Taks Title</h2>
-        <p>March 02, 2022</p>
-      </div>
-      <br />
-      <div>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima
-          dolore, illo deleniti tenetur reiciendis magnam itaque labore vel
-          officiis quam consectetur optio tempore ducimus omnis doloremque,
-          impedit dolores delectus! Maiores ipsa quaerat cumque ipsum ipsam
-          quibusdam? Inventore eum, quod assumenda magnam placeat dicta sapiente
-          perspiciatis. Soluta assumenda dolorum odio exercitationem!
-        </p>
-      </div>
-      <br />
-      <div>
-        <b>Status</b>
-        <p>Pending</p>
-      </div>
-      <br />
-      <button className="editTaskBtn edit">Edit</button>
-      <button className="editTaskBtn del" onClick={() => setOpenModal(true)}>
-        Delete
-      </button>
+      {loading ? (
+        <h2>Loading</h2>
+      ) : error !== "" ? (
+        <p>{error}</p>
+      ) : (
+        <>
+          <div className="taskTitleContainer">
+            <h2>{task.title}</h2>
+            <p>{new Date(task.createdAt).toDateString()}</p>
+          </div>
+          <br />
+          <div>
+            <p>{task.description}</p>
+          </div>
+          <br />
+          <div>
+            <b>Status</b>
+            <p>{task.status}</p>
+          </div>
+          <br />
+          <button className="editTaskBtn edit" onClick={() => handleEdit()}>
+            Edit
+          </button>
+          <button
+            className="editTaskBtn del"
+            onClick={() => setOpenModal(true)}
+          >
+            Delete
+          </button>
+        </>
+      )}
     </div>
   );
 };

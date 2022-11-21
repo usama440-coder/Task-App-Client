@@ -226,3 +226,22 @@ textarea {
     background-color: #EC4134;
     color: white;
 }
+
+.loginContainer {
+    border: 2px solid red;
+    width: 100%;
+    max-width: 300px;
+}
+
+.notFoundContainer {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    height: 90vh;
+    align-items: center;
+}
+
+.notFoundImage {
+    max-width: 500px;
+    width: 100%;
+}
